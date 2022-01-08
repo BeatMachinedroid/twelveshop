@@ -64,15 +64,11 @@ if( isset($_SESSION['error']) ) {
                             echo   '<div class="icons">
                                     <div class="fas fa-bars" id="menu-btn"></div>
                                     <div class="fas fa-shopping-cart" id="cart-btn"></div>
-                                    <div class="fas fa-sign-out-alt" id="login-btn"></div>
+                                    <a href="logout.php"><div class="fas fa-sign-out-alt" id="login-btn"></div></a>
                                 </div>';
 
                         }?>
 
-    <form action="produk.php" class="search-form" method="post">
-        <input type="text" name="cari" id="search-box" placeholder="Cari Kue.... ">
-        <label for="search-box" class="fas fa-search"></label>
-    </form>
     <?php
         
     ?>
@@ -99,9 +95,14 @@ if( isset($_SESSION['error']) ) {
 
 <!-- home section starts  -->
 
-<?php 
-include("./view/home.php")
-?>
+<section class="home" id="home">
+
+    <div class="content">
+        <h3>100% <span>Home made</span> and fresh cookies</h3>
+        <a href="produk.php" class="btn">shop now</a>
+    </div>
+
+</section>
 
 <!-- home section ends -->
 

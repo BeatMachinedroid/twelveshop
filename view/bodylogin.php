@@ -21,10 +21,6 @@
                 </div>
                 
                 <div class="d-sm-flex mb-5 align-items-center">
-                  <label class="control control--checkbox mb-3 mb-sm-0"><span class="caption">Remember me</span>
-                    <input type="checkbox" checked="checked"/>
-                    <div class="control__indicator"></div>
-                  </label>
                   <span class="ml-auto"><a href="register.php" class="forgot-pass">Don't have acount</a></span> 
                 </div>
 
