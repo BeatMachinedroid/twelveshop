@@ -73,9 +73,14 @@
                     </div>
                 </div>
             </li>
+
+            
 <!-- Divider -->
 <hr class="sidebar-divider">
 
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            
 <!-- Heading -->
 <div class="sidebar-heading">
     

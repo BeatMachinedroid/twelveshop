@@ -5,6 +5,11 @@ include('./includes/slidebar.php');
 include('./includes/top.php');
 include('../connection/koneksi.php');
 
+
+if( !isset($_SESSION['username']) ){
+    $_SESSION['msg'] = 'anda harus login untuk mengakses halaman ini';
+    header('Location: ../login.php');
+  }
 ?>
 
                 <!-- Begin Page Content -->

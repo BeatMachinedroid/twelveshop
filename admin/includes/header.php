@@ -15,7 +15,7 @@ error_reporting(0);  // using to hide undefine undex errors
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Admin Dashboard</title>
+    <title>Twelve Kichen | Admin</title>
     <link rel="icon" href="./img/logo.png">
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">

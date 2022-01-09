@@ -28,36 +28,24 @@ error_reporting(0);
 
                         <div class="card">
                             <div class="card-body">
+                            <?php
 
+                                if(isset($_POST['edit_btn']))
+                                {
+                                    $id = $_POST['edit_id'];
+                                    
+                                    $query = "SELECT * FROM acoount WHERE iduser='$id' ";
+                                    $query_run = mysqli_query($connection, $query);
+
+                                    foreach($query_run as $row)
+                                    {
+                                        ?>
                                 <div class="col-lg-6">
-                                    <form role="form" method="post" action="">
-                                        <div class="form-group">
-                                            <label>Username</label>
-                                            <input class="form-control" placeholder="example name">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Email</label>
-                                            <input class="form-control" id="datetimepicker1" placeholder="example@gmail.com" >
-                                        </div>
-                                        <div class="form-group">
-                                            <label>No Telp</label>
-                                            <input class="form-control" id="datetimepicker1" placeholder="08" >
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Password</label>
-                                            <input class="form-control" id="datetimepicker1" placeholder="example@gmail.com" >
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Alamat</label>
-                                            <textarea class="form-control" rows="3"></textarea>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Hak akses</label>
-                                            <input class="form-control" id="datetimepicker1" >
-                                        </div>
-                                        <button type="submit" class="btn btn-info btn-flat btn-addon btn-sm m-b-10 m-l-5">Submit Button</button>
-                                        <button type="reset" class="btn btn-danger btn-flat btn-addon btn-xs m-b-10">Reset Button</button>
-                                    </form>
+                                    
+                                    <?php
+                                            }
+                                        }
+                                    ?>
                                 </div>
 
                             </div>

@@ -27,7 +27,7 @@
                                         <thead>
                                             <tr>
                                                 <th>Username</th>
-                                                <th>Email</th>
+                                                <th>Nama</th>
                                                 <th>No. Telphon</th>
                                                 <th>Alamat</th>
                                                 <th>Date</th>
@@ -55,12 +55,12 @@
 																				
 																				
 																					echo ' <tr><td>'.$rows['username'].'</td>
-																								<td>'.$rows['email'].'</td>
+																								<td>'.$rows['nama'].'</td>
 																								<td>'.$rows['telp'].'</td>
 																								<td>'.$rows['alamat'].'</td>
 																								<td>'.$rows['date'].'</td>
 																								<td>'.$rows['akses'].'</td>																								
-																									 <td><a href="delete_user.php?user_del='.$rows['iduser'].'" class="btn btn-danger btn-flat btn-addon btn-xs m-b-10"><i class="fas fa-trash" style="font-size:16px"></i></a> 
+																									 <td><a href="delete_user.php?user_del='.$rows['iduser'].'" class="btn btn-danger btn-flat btn-addon btn-xs m-b-10"><i class="fas fa-trash" style="font-size:16px" ></i></a> 
 																									 <a href="update_user.php?user_upd='.$rows['iduser'].'" " class="btn btn-info btn-flat btn-addon btn-sm m-b-10 m-l-5"><i class="fas fa-cog"></i></a>
 																									</td></tr>';
 																					 

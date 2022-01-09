@@ -2,7 +2,7 @@
 include("../connection/koneksi.php");  //include connection file
 error_reporting(0);  // using to hide undefine undex errors
 ?>
- 
+
 <?php echo $error;?> //start temp session until logout/browser closed
 
 <!DOCTYPE html>
