@@ -3,7 +3,7 @@ include("../connection/koneksi.php");  //include connection file
 error_reporting(0);  // using to hide undefine undex errors
 ?>
 
-<?php echo $error;?> //start temp session until logout/browser closed
+<?php echo $error; //start temp session until logout/browser closed?> 
 
 <!DOCTYPE html>
 <html lang="en">
@@ -11,8 +11,9 @@ error_reporting(0);  // using to hide undefine undex errors
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Twelve Kitchen</title>
-
+    <link rel="icon" href="img/admin/logo.png">
+    <title>Twelve Kitchen : Home</title>
+    
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
 
     <!-- font awesome cdn link  -->
@@ -39,35 +40,14 @@ if( !isset($_SESSION['nama_user']) )
  
 ?>
 
-<header class="header">
-
-    <a href="#" class="logo"> <img class="img-rounded" src="../img/admin/logo.png" alt=""></a>
-
-    <nav class="navbar">
-        <a href="index.php">home</a>
-        <a href="produk.php">produk</a>
-        <a href="kategori.php">kategori</a>
-        <a href="about.php">tentang</a>
-    </nav>
-
-
-                            
-        <div class="icons">
-                                    <div class="fas fa-bars" id="menu-btn"></div>
-                                    <!-- <div class="fas fa-search" id="search-btn"></div> -->
-                                    <div class="fas fa-shopping-cart" id="cart-btn"></div>
-                                    <a href="logout.php"><div class="fas fa-sign-out-alt" id="login-btn"></div></a>
-        </div>					
-
-
-</header>
-
 <!-- header section ends -->
 
 <!-- home section starts  -->
 
 <?php 
-include("./view/home.php")
+include("./view/header.php");
+
+
 ?>
 
 <!-- home section ends -->
@@ -75,7 +55,8 @@ include("./view/home.php")
 <!-- features section starts  -->
 
 <?php 
-include("./view/fitur.php")
+include("./view/home.php");
+include("./view/fitur.php");
 ?>
 
 <!-- features section ends -->

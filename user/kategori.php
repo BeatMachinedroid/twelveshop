@@ -23,8 +23,8 @@ if( isset($_SESSION['error']) ) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Twelve Kitchen</title>
-
+    <title>Twelve Kitchen | kategori</title>
+    <link rel="icon" href="../img/admin/logo.png">
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
 
     <!-- font awesome cdn link  -->
@@ -59,25 +59,9 @@ include("./view/header.php")
 
 <!-- categories section starts  -->
 
-<section class="categories" id="categories">
-
-    <h1 class="heading"> product <span>categories</span> </h1>
-
-    <div class="box-container">
-	<?php $ambil = $koneksi->query("SELECT * FROM kategori"); ?>
-	<?php while($kategori = $ambil->fetch_assoc()){ ?>
-        <div class="box">
-            <img src="image/<?php echo $kategori['gambark']; ?>" alt="">
-            <h3><?php echo $kategori['namakate']; ?></h3>
-            <a href="app/produk.php" class="btn">shop now</a>
-        </div>
-
-        
-        <?php } ?>
-
-    </div>
-
-</section>
+<?php 
+include("./view/kategori.php")
+?>
 <!-- categories section ends -->
 
 <!-- footer section starts  -->

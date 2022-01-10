@@ -35,7 +35,7 @@ if( isset($_SESSION['error']) ) {
     <!-- Style -->
     <link rel="stylesheet" href="css/css/style.css">
 
-    <title>Twelve Kitchen</title>
+    <title>Twelve Kitchen | login</title>
   </head>
   <body>
   

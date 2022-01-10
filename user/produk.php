@@ -1,6 +1,6 @@
 <?php
 include("./../connection/koneksi.php");  //include connection file
-include("./cart.php");
+
 error_reporting(0);  // using to hide undefine undex errors
 
 session_start();
@@ -13,7 +13,7 @@ session_start();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Twelve Kitchen</title>
-
+    <link rel="icon" href="img/admin/logo.png">
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
 
     <!-- font awesome cdn link  -->
@@ -43,20 +43,20 @@ include("./view/header.php");
 <!-- header section ends -->
 
 <!-- products section starts  -->
-<form action="koncart.php" method="POST">
+
 <section class="produk" id="produk">
 
+
+
     <h3 class="heading"> our <span>products</span> </h3>
-    <?php
-        $cart = new cart();
-        $kue = $cart->getProduct();
-    ?>
 
     <div class="box-container">
+	<?php $ambil = $koneksi->query("SELECT * FROM kue"); ?>
+	<?php while($kue = $ambil->fetch_assoc()){ ?>
         <div class="box">
-            <img src="../img/kue/" alt="">
-            <h3></h3>
-            <div class="price">Rp.</div>
+            <img src="../img/kue/<?php echo $kue['gambar']; ?>" alt="">
+            <h3><?php echo $kue['namakue']; ?></h3>
+            <div class="price">Rp.<?php echo $kue['harga']; ?></div>
             <div class="stars">
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
@@ -64,25 +64,18 @@ include("./view/header.php");
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star-half-alt"></i>
                 </div>
-            <a href="" class="btn" name=addcart>shop now</a>
-        </div>
-        <div class="box">
-            <img src="../img/kue/" alt="">
-            <h3></h3>
-            <div class="price">Rp.</div>
-            <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-            <a href="" class="btn" name=addcart>shop now</a>
+            <a href="chechout.php" class="btn">shop now</a>
         </div>
 
+        
+        <?php } ?>
+
     </div>
+
 </section>
-</form>
+
+
+
 
 
 <!-- products section ends -->

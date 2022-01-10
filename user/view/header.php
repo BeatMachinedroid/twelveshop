@@ -6,15 +6,15 @@
         <a href="index.php">home</a>
         <a href="produk.php">produk</a>
         <a href="kategori.php">kategori</a>
-        <a href="about.php">tentang</a>
+        
     </nav>
 
 
                             
         <div class="icons">
                                     <div class="fas fa-bars" id="menu-btn"></div>
-                                    <div class="fas fa-search" id="search-btn"></div>
-                                    <div class="fas fa-shopping-cart" id="cart-btn"></div>
+                                    
+                                    <a href="checkout.php"><div class="fas fa-shopping-cart" id="cart-btn"></div></a>
                                     <a href="logout.php"><div class="fas fa-sign-out-alt" id="login-btn"></div></a>
                                 </div>
 

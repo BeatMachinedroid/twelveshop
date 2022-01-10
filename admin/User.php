@@ -5,15 +5,9 @@
     include('./includes/top.php');
  ?>
  
-                <!-- Begin Page Content -->
-                <div class="container-fluid">
-
-                    <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">All Users</h1>
-                        
-                    </div>  
-                    
+ 
+ <div class="page-wrapper">
+            
  <!-- Start Page Content -->
  <div class="row">
                     <div class="col-12">
@@ -21,17 +15,18 @@
                        
                         <div class="card">
                             <div class="card-body">
+                                <h4 class="card-title">All Registered users</h4>
                              
                                 <div class="table-responsive m-t-40">
                                     <table id="myTable" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
                                                 <th>Username</th>
-                                                <th>Nama</th>
-                                                <th>No. Telphon</th>
+                                                <th>nama</th>
+                                                <th>No. Telphone</th>
                                                 <th>Alamat</th>
-                                                <th>Date</th>
-												<th>Akses</th>												
+												<th>Address</th>												
+												 <th>Reg-Date</th>
 												  <th>Action</th>
 												 
                                             </tr>
@@ -58,11 +53,10 @@
 																								<td>'.$rows['nama'].'</td>
 																								<td>'.$rows['telp'].'</td>
 																								<td>'.$rows['alamat'].'</td>
-																								<td>'.$rows['date'].'</td>
-																								<td>'.$rows['akses'].'</td>																								
+																								<td>'.$rows['date'].'</td>																								
+																								<td>'.$rows['akses'].'</td>
 																									 <td><a href="delete_user.php?user_del='.$rows['iduser'].'" class="btn btn-danger btn-flat btn-addon btn-xs m-b-10"><i class="fas fa-trash" style="font-size:16px" ></i></a> 
-																									 <a href="update_user.php?user_upd='.$rows['iduser'].'" " class="btn btn-info btn-flat btn-addon btn-sm m-b-10 m-l-5"><i class="fas fa-cog"></i></a>
-																									</td></tr>';
+																									 <a href="update_user.php?user_upd='.$rows['iduser'].'" " class="btn btn-info btn-flat btn-addon btn-sm m-b-10 m-l-5"><i class="fas fa-cog"></i></a></td></tr>';
 																					 
 																						
 																						
@@ -77,12 +71,12 @@
                                         </tbody>
                                     </table>
                                 </div>
-
                             </div>
                         </div>
-					</div>
+						 </div>
+ 
                       
-</div>
+                            
                         
                 <!-- End PAge Content -->
                                                     

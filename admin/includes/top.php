@@ -37,8 +37,7 @@
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
                 <a class="nav-link dropdown-toggle" href="logout.php" id="userDropdown" role="button">
-                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">Admin</span>
-                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">| Logout</span>
+                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">Logout</span>
                     <img class="img-profile rounded-circle"
                         src="img/undraw_profile.svg">
                 </a>

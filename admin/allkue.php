@@ -30,7 +30,8 @@
                                                 <th>Gambar Kue</th>
                                                 <th>Nama Kue</th>
                                                 <th>Harga</th>
-                                                <th>Kategori</th>											
+                                                <th>Kategori</th>
+                                                <th>Date</th>											
 												  <th>Action</th>
 												 
                                             </tr>
@@ -59,7 +60,8 @@
                                                                                                     <center><img src="../img/kue/'.$rows['gambar'].'" class="img-responsive  radius" style="max-height:100px;max-width:150px;" /></center></td>
 																								<td>'.$rows['namakue'].'</td>
 																								<td>'.$rows['harga'].'</td>
-                                                                                                <td>'.$rows['namakate'].'</td>																							
+                                                                                                <td>'.$rows['namakate'].'</td>
+                                                                                                <td>'.$rows['date'].'</td>																							
 																									 <td><a href="delete_kue.php?kue_del='.$rows['idkue'].'" class="btn btn-danger btn-flat btn-addon btn-xs m-b-10"><i class="fas fa-trash" style="font-size:16px"></i></a> 
 																									 <a href="update_kue.php?kue_upd='.$rows['idkue'].'" " class="btn btn-info btn-flat btn-addon btn-sm m-b-10 m-l-5"><i class="fas fa-cog"></i></a>
 																									</td></tr>';

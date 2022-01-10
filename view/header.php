@@ -1,12 +1,12 @@
 <header class="header">
 
-    <a href="index.php" class="logo"> <img class="img-rounded" src="img/admin/logo.png" alt=""></a>
+    <a href="index.php" class="logo"><img class="img-rounded" src="img/admin/logo.png" alt=""></a>
 
     <nav class="navbar">
         <a href="index.php">home</a>
         <a href="produk.php">produk</a>
         <a href="kategori.php">kategori</a>
-        <a href="about.php">tentang</a>
+        
     </nav>
 
     <?php

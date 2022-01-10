@@ -1,70 +1,73 @@
-<?php
-//menyertakan file program koneksi.php pada register
-require('./connection/koneksi.php');
-//inisialisasi session
-session_start();
- 
-$error = '';
-$validate = '';
-//mengecek apakah form registrasi di submit atau tidak
-if( isset($_POST['submit']) ){
-        // menghilangkan backshlases
-        $username = stripslashes($_POST['username']);
-        //cara sederhana mengamankan dari sql injection
-        $username = mysqli_real_escape_string($koneksi , $username);
-        $name     = stripslashes($_POST['nama']);
-        $name     = mysqli_real_escape_string($koneksi, $name);
-        $telp     = stripslashes($_POST['telp']);
-        $telp     = mysqli_real_escape_string($koneksi, $telp);
-        $alamat   = stripslashes($_POST['alamat']);
-        $alamat   = mysqli_real_escape_string($koneksi, $alamat);
-        $password = stripslashes($_POST['pass']);
-        $password = mysqli_real_escape_string($koneksi, $password);
-        $repass   = stripslashes($_POST['repass']);
-        $repass   = mysqli_real_escape_string($koneksi, $repass);
-        //cek apakah nilai yang diinputkan pada form ada yang kosong atau tidak
-        if(!empty(trim($name)) && !empty(trim($username)) && !empty(trim($telp)) && !empty(trim($alamat)) && !empty(trim($password)) && !empty(trim($repass))){
-            //mengecek apakah password yang diinputkan sama dengan re-password yang diinputkan kembali
-            if($password == $repass){
-                //memanggil method cek_nama untuk mengecek apakah user sudah terdaftar atau belum
-                if( cek_nama($name,$koneksi) == 0 ){
-                    //hashing password sebelum disimpan didatabase
-                    $pass  = password_hash($password, PASSWORD_DEFAULT);
-                    //insert data ke database
-                    $query = "INSERT INTO acoount (username,nama,telp,alamat,password ) VALUES ('$username','$name','$telp','$alamat','$pass')";
-                    $result   = mysqli_query($koneksi, $query);
-                    //jika insert data berhasil maka akan diredirect ke halaman index.php serta menyimpan data username ke session
-                    if ($result) {
-                        $_SESSION['username'] = $username;
-                        
-                        header('Location: login.php');
-                     
-                    //jika gagal maka akan menampilkan pesan error
-                    } else {
-                        $error =  'Register User Gagal !!';
-                    }
-                }else{
-                        $error =  'Username sudah terdaftar !!';
-                }
-            }else{
-                $validate = 'Password tidak sama !!';
-            }
-             
-        }else {
-            $error =  'Data tidak boleh kosong !!';
-        }
-    } 
-    //fungsi untuk mengecek username apakah sudah terdaftar atau belum
-    function cek_nama($username,$koneksi){
-        $nama = mysqli_real_escape_string($koneksi, $username);
-        $query = "SELECT * FROM users WHERE username = '$nama'";
-        if( $result = mysqli_query($koneksi, $query) ) return mysqli_num_rows($result);
-    }
 
-?>
 
 <!doctype html>
 <html lang="en">
+<?php
+
+session_start(); //temp session
+error_reporting(0); // hide undefine index
+include("connection/koneksi.php"); // connection
+if(isset($_POST['submit'] )) //if submit btn is pressed
+{
+     if(empty($_POST['username']) ||  //fetching and find if its empty
+   	    empty($_POST['nama'])||   
+		empty($_POST['telp'])||
+        empty($_POST['almt'])||
+		empty($_POST['pass'])||
+		empty($_POST['repass']))
+		{
+			$message = "All fields must be Required!";
+		}
+	else
+	{
+		//cheching username & email if already present
+	$check_username= mysqli_query($koneksi, "SELECT username FROM acoount where username = '".$_POST['username']."' ");
+		
+
+	
+	if($_POST['pass'] != $_POST['repass']){  //matching passwords
+       	$message = "Password not match";
+    }
+	elseif(strlen($_POST['pass']) < 6)  //cal password length
+	{
+		$message = "Password harus 6 atau lebih";
+	}
+	elseif(strlen($_POST['telp']) < 12)  //cal phone length
+	{
+		$message = "invalid phone number!";
+	}
+	elseif(mysqli_num_rows($check_username) > 0)  //check username
+     {
+    	$message = 'username Already exists!';
+     }
+	else{
+       
+	 //inserting values into db
+	$mql = "INSERT INTO acoount(username,nama,telp,alamat,password) VALUES('".$_POST['username']."','".$_POST['nama']."','".$_POST['telp']."','".$_POST['almt']."','".md5($_POST['pass'])."')";
+	mysqli_query($koneksi, $mql);
+		$success = "Account Created successfully! <p>You will be redirected in <span id='counter'>5</span> second(s).</p>
+														<script type='text/javascript'>
+														function countdown() {
+															var i = document.getElementById('counter');
+															if (parseInt(i.innerHTML)<=0) {
+																location.href = 'login.php';
+															}
+															i.innerHTML = parseInt(i.innerHTML)-1;
+														}
+														setInterval(function(){ countdown(); },1000);
+														</script>'";
+		
+		
+		
+		
+		 header("refresh:5;url=login.php"); // redireted once inserted success
+    }
+	}
+
+}
+
+
+?>
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -81,13 +84,21 @@ if( isset($_POST['submit']) ){
     <!-- Style -->
     <link rel="stylesheet" href="css/css/style.css">
 
-    <title>Twelve Kitchen</title>
+    <title>Twelve Kitchen | Register</title>
   </head>
   <body>
   
 
-  <?php 
-include("./view/bodyregister.php")
+  <?php
+
+
+// When form submitted, insert values into the database.
+
+
+?>
+
+<?php
+  include('./view/bodyregister.php');
 ?>
     
     

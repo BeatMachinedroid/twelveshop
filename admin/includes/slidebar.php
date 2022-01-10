@@ -38,7 +38,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">User :</h6>
                         <a class="collapse-item" href="user.php">All Users</a>
-                        <a class="collapse-item" href="adduser.php">Add User</a>
+                        
                     </div>
                 </div>
             </li>
@@ -59,7 +59,7 @@
                 </div>
             </li>
 
-            <li class="nav-item">
+<li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
                     aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-pizza-slice"></i>
@@ -74,9 +74,13 @@
                 </div>
             </li>
 
-            
+            <li class="nav-item">
+                <a class="nav-link" href="order.php">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>Orders</span></a>
+            </li>
 <!-- Divider -->
-<hr class="sidebar-divider">
+
 
 
             <!-- Nav Item - Pages Collapse Menu -->

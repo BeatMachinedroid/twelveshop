@@ -1,21 +1,9 @@
 <?php
 include("./connection/koneksi.php");  //include connection file
 error_reporting(0);  // using to hide undefine undex errors
+
 session_start();
- 
-if( isset($_SESSION['akses']) )
-{
-    header('location:'.$_SESSION['akses']);
-    exit();
-}
- 
-$error = '';
-if( isset($_SESSION['error']) ) {
- 
-    $error = $_SESSION['error']; // set error
- 
-    unset($_SESSION['error']);
-} ?>
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -23,9 +11,8 @@ if( isset($_SESSION['error']) ) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Twelve Kitchen | Home</title>
+    <title>Twelve Kitchen | kategori</title>
     <link rel="icon" href="img/admin/logo.png">
-
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
 
     <!-- font awesome cdn link  -->
@@ -44,56 +31,41 @@ if( isset($_SESSION['error']) ) {
 include("./view/header.php")
 ?>
 
-<!-- header section ends -->
-
-<!-- home section starts  -->
-
 <section class="home" id="home">
 
     <div class="content">
-        <h3>100% <span>Home made</span> and fresh cookies</h3>
-        <a href="produk.php" class="btn">shop now</a>
+        <h3>our <span>kategory</span>   Product</h3>
     </div>
 
 </section>
 
-<!-- home section ends -->
+<!-- header section ends -->
+<!-- kategori section -->
 
-<!-- features section starts  -->
+<section class="categories" id="categories">
 
-<?php 
-include("./view/fitur.php")
-?>
+    <h1 class="heading"> product <span>categories</span> </h1>
 
-<!-- features section ends -->
+    <div class="box-container">
+	<?php $ambil = $koneksi->query("SELECT * FROM kategori LIMIT 4"); ?>
+	<?php while($kategori = $ambil->fetch_assoc()){ ?>
+        <a href="login.php">
+        <div class="box">
+            <img src="image/<?php echo $kategori['gambark']; ?>" alt="">
+            <h3><?php echo $kategori['namakate']; ?></h3>
+        </div>
+        </a>
 
+        
+        <?php } ?>
+
+    </div>
+
+</section>
 <!-- products section starts  -->
-
-<?php 
-include("./view/inproduk.php")
-?>
 
 <!-- products section ends -->
 
-<!-- categories section starts  -->
-
-<?php 
-include("./view/kategori.php")
-?>
-<!-- categories section ends -->
-
-<!-- review section starts  -->
-
-
-<!-- review section ends -->
-
-<!-- blogs section starts  -->
-
-<?php 
-include("./view/blog.php")
-?>
-
-<!-- blogs section ends -->
 
 <!-- footer section starts  -->
 

@@ -23,14 +23,7 @@
     <a href="#" class="links"> <i class="fas fa-map-marker-alt"></i>gg.merdeka, jl.serbajadi, natar, lampung selatan</a>
 </div>
 
-<div class="box">
-    <h3>quick links</h3>
-    <a href="#" class="links"> <i class="fas fa-arrow-right"></i> home </a>
-    <a href="#" class="links"> <i class="fas fa-arrow-right"></i> features </a>
-    <a href="#" class="links"> <i class="fas fa-arrow-right"></i> products </a>
-    <a href="#" class="links"> <i class="fas fa-arrow-right"></i> categories </a>
-    <a href="#" class="links"> <i class="fas fa-arrow-right"></i> blogs </a>
-</div>
+
 
 
 
