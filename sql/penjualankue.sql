@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 23, 2021 at 04:04 PM
+-- Generation Time: Jan 10, 2022 at 04:23 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.10
 
@@ -29,26 +29,23 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `acoount` (
   `iduser` int(11) NOT NULL,
-  `username` varchar(200) DEFAULT NULL,
-  `email` varchar(200) DEFAULT NULL,
-  `telp` varchar(200) DEFAULT NULL,
-  `password` varchar(100) DEFAULT NULL,
-  `alamat` text DEFAULT NULL,
+  `username` varchar(200) NOT NULL,
+  `nama` varchar(200) NOT NULL,
+  `telp` varchar(200) NOT NULL,
+  `alamat` text NOT NULL,
+  `password` varchar(100) NOT NULL,
   `status` int(11) DEFAULT NULL,
-  `level` varchar(5) DEFAULT NULL,
-  `date` date DEFAULT NULL,
-  `akses` enum('admin','user') NOT NULL
+  `date` timestamp NOT NULL DEFAULT current_timestamp(),
+  `akses` enum('admin','user') DEFAULT 'user'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `acoount`
 --
 
-INSERT INTO `acoount` (`iduser`, `username`, `email`, `telp`, `password`, `alamat`, `status`, `level`, `date`, `akses`) VALUES
-(3, 'yohanesseptian@gmail.com', 'yohanesseptian@gmail.com', '0895705206794', '653859609734bb48ee1b36cc4c6640e1', 'bandar lampung', 1, 'admin', '2021-12-14', 'admin'),
-(4, 'twelvekichen@gmail.com', 'twelvekichen@gmail.com', '0895705206794', '25d55ad283aa400af464c76d713c07ad', 'bandar lampung', 1, 'admin', '2021-12-14', 'admin'),
-(5, 'yohanes@gmail.com', 'yohanes@gmail.com', '0895705206794', '653859609734bb48ee1b36cc4c6640e1', 'bandar lampung', 1, 'user', '2021-12-14', 'user'),
-(6, 'nissa aila', 'nisaa@gmail.com', '123456', 'e10adc3949ba59abbe56e057f20f883e', 'bandarlampung', NULL, NULL, NULL, '');
+INSERT INTO `acoount` (`iduser`, `username`, `nama`, `telp`, `alamat`, `password`, `status`, `date`, `akses`) VALUES
+(3, 'yohanesseptian@gmail.com', 'admin', '0895705206794', 'bandar lampung', '653859609734bb48ee1b36cc4c6640e1', 1, '2021-12-13 17:00:00', 'admin'),
+(5, 'yohanes@gmail.com', 'users', '0895705206794', 'bandar lampung', '653859609734bb48ee1b36cc4c6640e1', 1, '2021-12-13 17:00:00', 'user');
 
 -- --------------------------------------------------------
 
@@ -60,7 +57,7 @@ CREATE TABLE `kategori` (
   `idkate` int(11) NOT NULL,
   `gambark` text NOT NULL,
   `namakate` varchar(200) DEFAULT NULL,
-  `date` date DEFAULT NULL
+  `date` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -68,11 +65,11 @@ CREATE TABLE `kategori` (
 --
 
 INSERT INTO `kategori` (`idkate`, `gambark`, `namakate`, `date`) VALUES
-(1, 'donat.png', 'donat', '2021-12-18'),
-(2, 'pizza.png', 'pizza', '2021-12-18'),
-(3, 'Bakery.png', 'roti', '2021-12-18'),
-(4, 'coffe.png', 'coffee', '2021-12-18'),
-(5, 'Cake.png', 'kue', '2021-12-18');
+(1, 'donat.png', 'donat', '2021-12-17 17:00:00'),
+(2, 'pizza.png', 'pizza', '2021-12-17 17:00:00'),
+(3, 'Bakery.png', 'roti', '2021-12-17 17:00:00'),
+(4, 'coffe.png', 'coffee', '2021-12-17 17:00:00'),
+(5, 'Cake.png', 'kue', '2021-12-17 17:00:00');
 
 -- --------------------------------------------------------
 
@@ -84,6 +81,7 @@ CREATE TABLE `kue` (
   `idkue` int(11) NOT NULL,
   `idkate` int(11) DEFAULT NULL,
   `namakue` varchar(200) DEFAULT NULL,
+  `deskripsi` varchar(50) NOT NULL,
   `harga` decimal(10,0) DEFAULT NULL,
   `gambar` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -92,13 +90,12 @@ CREATE TABLE `kue` (
 -- Dumping data for table `kue`
 --
 
-INSERT INTO `kue` (`idkue`, `idkate`, `namakue`, `harga`, `gambar`) VALUES
-(1, 1, 'coffee & roti tawar \r\n', '10000', 'P10.png'),
-(2, 2, 'pizza full size\r\n', '10000', 'P2.png'),
-(3, 1, 'Donat toping coklat strowberry\r\n', '10000', 'P8.png'),
-(4, 1, 'Donat toping vanila\r\n', '10000', 'P8.png'),
-(5, 1, 'Donat toping coklat kacang\r\n', '10000', 'P8.png'),
-(6, 1, 'Donat toping green tea\r\n', '10000', 'P8.png');
+INSERT INTO `kue` (`idkue`, `idkate`, `namakue`, `deskripsi`, `harga`, `gambar`) VALUES
+(2, 2, 'pizza full size\r\n', '', '10000', 'P2.png'),
+(3, 1, 'Donat toping coklat strowberry\r\n', '', '10000', 'P8.png'),
+(4, 1, 'Donat toping vanila\r\n', '', '10000', 'P8.png'),
+(5, 1, 'Donat toping coklat kacang\r\n', '', '10000', 'P8.png'),
+(6, 1, 'Donat toping green tea\r\n', '', '10000', 'P8.png');
 
 -- --------------------------------------------------------
 
@@ -108,21 +105,21 @@ INSERT INTO `kue` (`idkue`, `idkate`, `namakue`, `harga`, `gambar`) VALUES
 
 CREATE TABLE `userorder` (
   `idorder` int(11) NOT NULL,
-  `iduser` int(11) DEFAULT NULL,
-  `idkue` int(11) DEFAULT NULL,
+  `iduser` int(11) NOT NULL,
+  `idkue` int(11) NOT NULL,
   `namadituju` varchar(200) NOT NULL,
-  `jumlah` char(100) DEFAULT NULL,
-  `alamatdituju` varchar(200) DEFAULT NULL,
-  `total` decimal(10,0) DEFAULT NULL,
-  `date` date DEFAULT NULL
+  `jumlah` char(100) NOT NULL,
+  `alamatdituju` varchar(200) NOT NULL,
+  `total` decimal(10,0) NOT NULL,
+  `odate` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `userorder`
 --
 
-INSERT INTO `userorder` (`idorder`, `iduser`, `idkue`, `namadituju`, `jumlah`, `alamatdituju`, `total`, `date`) VALUES
-(1, 5, 2, 'yohanes septian', '4', 'bandar jaya barat', '50000', '2021-12-20');
+INSERT INTO `userorder` (`idorder`, `iduser`, `idkue`, `namadituju`, `jumlah`, `alamatdituju`, `total`, `odate`) VALUES
+(1, 5, 2, 'yohanes septian', '4', 'bandar jaya barat', '50000', '2021-12-19 17:00:00');
 
 --
 -- Indexes for dumped tables
@@ -163,19 +160,19 @@ ALTER TABLE `userorder`
 -- AUTO_INCREMENT for table `acoount`
 --
 ALTER TABLE `acoount`
-  MODIFY `iduser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `iduser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `kategori`
 --
 ALTER TABLE `kategori`
-  MODIFY `idkate` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idkate` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `kue`
 --
 ALTER TABLE `kue`
-  MODIFY `idkue` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `idkue` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `userorder`

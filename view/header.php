@@ -15,7 +15,7 @@
                             echo   '<div class="icons">
                                     <div class="fas fa-bars" id="menu-btn"></div>
                                     
-                                    <div class="fas fa-shopping-cart" id="cart-btn"></div>
+                                    <a href="login.php"><div class="fas fa-shopping-cart" id="cart-btn"></div></a>
                                     <a href="login.php"><div class="fas fa-user" id="login-btn"></div></a>
                                 </div>';}
                         else{

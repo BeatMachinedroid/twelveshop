@@ -43,52 +43,9 @@ include("./view/header.php")
 <!-- products section starts  -->
 
 
-<?php  // display values and item of food/dishes
-									$stmt = $db->prepare("select * from kue where idkate='$_GET[kate]'");
-									$stmt->execute();
-									$products = $stmt->get_result();
-									if (!empty($products)) 
-									{
-									foreach($products as $kue)
-										{
-						
-													
-													 
-													 ?>
-                                <section class="produk" id="produk">
-                                <form method="post" action='cart.php?kate=<?php echo $_GET['kate'];?>&action=add&id=<?php echo $product['idkue']; ?>'>
-                                            <h3 class="heading"> our <span>products</span> </h3>
-
-                                            <div class="box-container">
-                                                <div class="box">
-                                                    <img src="img/kue/<?php echo $kue['gambar']; ?>" alt="">
-                                                    <h3><?php echo $kue['namakue']; ?></h3>
-                                                    <div class="price">Rp.<?php echo $kue['harga']; ?></div>
-                                                    <input class="b-r-0" type="text" name="quantity"  style="margin-left:30px;" value="1" size="2" hidden/>
-                                                    <div class="stars">
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star-half-alt"></i>
-                                                        </div>
-                                                    <a href="app/produk.php" class="btn">shop now</a>
-                                                </div>
-
-                                                
-                                                
-
-                                            </div>
-                                </form>
-                                            </section>
-                                <!-- end:Food item -->
-								
-								<?php
-									  }
-									}
-									
-								?>
-<!-- products section ends -->
+<?php 
+include("./view/inproduk.php")
+?>
 
 
 <!-- footer section starts  -->

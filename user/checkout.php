@@ -1,5 +1,5 @@
-<?php
-include("./../connection/koneksi.php");  //include connection file
+<?php  //include connection file
+include('./../connection/koneksi.php');
 error_reporting(0);  // using to hide undefine undex errors
 session_start();
  
@@ -80,18 +80,16 @@ include("./view/header.php")
                     <label>Pilih Kategori</label>
                         <select name="kategori" class="form-control" id="product">
                             <option value="">-- Pilih Kategori --</option>
-                            <?php $ssql ="select * from kategori join kue on kategori.idkate=kue.idkate";
-													$res=mysqli_query($koneksi, $ssql); 
-													while($row=mysqli_fetch_array($res))  
-													{
-                                                        echo '
-                                                        <option value="'.$row['idkate'].'">'.$row['namakate'].'</option>
+                           <?php $ambil = $koneksi->query("SELECT * FROM kategori"); ?>
+	                            <?php while($kue = $ambil->fetch_assoc()){ ?>
+													
+                                    <option value=""><?php echo $kue['namakate']; ?></option>
                                                         
                                                         
-                                                        ';
+                                
                           
-                                                    }
-                        ?> 
+                                                    
+                            <?php } ?> 
                         </select>
                     </div>
                     <div class="form-group">
@@ -102,15 +100,16 @@ include("./view/header.php")
                         <label>Pilih Kue</label>
                         <select name="kue" class="form-control" id="product">
                             <option value="">-- Pilih Kue --</option>
-                            <?php $ssql ="select * from kue";
-													$res=mysqli_query($koneksi, $ssql); 
-													while($row=mysqli_fetch_array($res))  
-													{
-                                                        echo '
-                                                        <option value="'.$row['idkue'].'">'.$row['namakue'].'</option>';
+                            <?php $ambil = $koneksi->query("SELECT * FROM kue"); ?>
+	                            <?php while($kue = $ambil->fetch_assoc()){ ?>
+													
+                                    <option value=""><?php echo $kue['namakue']; ?></option>
+                                                        
+                                                        
+                                
                           
-                                                    }
-                        ?> 
+                                                    
+                            <?php } ?> 
                         </select>
                     </div>
                     <div class="form-group">
@@ -131,6 +130,8 @@ include("./view/header.php")
             </div>
         </div>
 </div>
+
+
 <script type="text/javascript">
 		$(document).on('click','.send', function(){
 			/* Inputan Formulir */

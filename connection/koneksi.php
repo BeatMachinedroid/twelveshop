@@ -29,3 +29,4 @@ if( $koneksi->connect_error )
  
 $url = rtrim($url,'/');
 ?>
+

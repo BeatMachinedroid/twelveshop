@@ -16,7 +16,7 @@
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star-half-alt"></i>
                 </div>
-            <a href="app/produk.php" class="btn">shop now</a>
+            <a href="checkout.php" class="btn">shop now</a>
         </div>
 
         
