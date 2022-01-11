@@ -6,10 +6,11 @@ if($conn->connect_error){
 }
  
 //tampil data dari database
-$result = $conn->query("SELECT namakue FROM kue");
-if ($result->num_rows > 0){
-	while($row = $result->fetch_assoc()){
-        echo $row["namakue"];
+$resultkue = $conn->query("SELECT namakue FROM kue");
+if ($resultkue->num_rows > 0){
+	while($row = $resultkue->fetch_assoc()){
+        echo '
+        <option value="" id="kue1">'.$row["namakue"].'</option>';
 	}
 }
 

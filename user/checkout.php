@@ -78,38 +78,32 @@ include("./view/header.php")
                     </div>
                     <div class="form-group">
                     <label>Pilih Kategori</label>
-                        <select name="kategori" class="form-control" id="product">
+                        <select name="kategori" class="form-control" id="kategori">
                             <option value="">-- Pilih Kategori --</option>
-                           <?php $ambil = $koneksi->query("SELECT * FROM kategori"); ?>
-	                            <?php while($kue = $ambil->fetch_assoc()){ ?>
 													
-                                    <option value=""><?php echo $kue['namakate']; ?></option>
+                                    <option value="" id="kateop"></option>
                                                         
                                                         
                                 
                           
                                                     
-                            <?php } ?> 
+                            
                         </select>
                     </div>
                     <div class="form-group">
                         <label>Jumlah kue</label>
-                        <input type="email" name="jumlah" class="form-control" placeholder="jumlah yang diinginkan" id="email">
+                        <input type="text" name="jumlah" class="form-control" placeholder="jumlah yang diinginkan" id="jumlah">
                     </div>
                     <div class="form-group">
                         <label>Pilih Kue</label>
-                        <select name="kue" class="form-control" id="product">
-                            <option value="">-- Pilih Kue --</option>
-                            <?php $ambil = $koneksi->query("SELECT * FROM kue"); ?>
-	                            <?php while($kue = $ambil->fetch_assoc()){ ?>
-													
-                                    <option value=""><?php echo $kue['namakue']; ?></option>
+                        <select name="kue" class="form-control" id="kue" aria-placeholder="-- Pilih Kue --">
+
                                                         
                                                         
                                 
                           
                                                     
-                            <?php } ?> 
+                            
                         </select>
                     </div>
                     <div class="form-group">
@@ -119,7 +113,7 @@ include("./view/header.php")
                     
                     <div class="form-group">
                         <label>Alamat yang Dituju</label>
-                        <textarea name="alamat" class="form-control" rows="3" id="description"></textarea>
+                        <textarea name="alamat" class="form-control" rows="3" id="alamat"></textarea>
                     </div>
                     <div class="form-group">
                         <button class="btn btn-success send">Pesan via WhatsApp</button>
@@ -132,7 +126,25 @@ include("./view/header.php")
 </div>
 
 
+
+
 <script type="text/javascript">
+$(document).ready(function(){
+		//setInterval memberikan delay pada saat data akan di tampilkan
+		setInterval(function(){
+                //Metode load digunakan untuk menampilkan data
+			$('#kue').load("code.php")
+		}, 1000);
+	});
+
+    $(document).ready(function(){
+		//setInterval memberikan delay pada saat data akan di tampilkan
+		setInterval(function(){
+                //Metode load digunakan untuk menampilkan data
+			$('#kategori').load("code.php")
+		}, 1000);
+	});
+
 		$(document).on('click','.send', function(){
 			/* Inputan Formulir */
 			var input_name 			= $("#name").val(),
@@ -155,7 +167,7 @@ include("./view/header.php")
 				var walink = 'whatsapp://send';
 			}
 
-			if(input_name != "" && input_wa != "" && input_kue != ""  ){
+			if(input_name != "" && input_email != ""&& input_wa != "" && input_kue != "" && input_alamat != "" ){
 				/* Whatsapp URL */
 				var checkout_whatsapp = walink + '?phone=' + phone + '&text=' + text + '%0A%0A' +
 				    'Nama : ' + input_name + '%0A' +

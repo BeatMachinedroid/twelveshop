@@ -1,4 +1,5 @@
 <?php
+
 include("./../connection/koneksi.php");  //include connection file
 
 error_reporting(0);  // using to hide undefine undex errors
@@ -49,9 +50,14 @@ include("./view/header.php");
 
 
     <h3 class="heading"> our <span>products</span> </h3>
-
+    <?php 
+        if(isset($_GET['idkate'])){
+            $idkate = $_GET['idkate'];
+        }else{
+            die("Error no id select");
+        }?>
     <div class="box-container">
-	<?php $ambil = $koneksi->query("SELECT * FROM kue"); ?>
+	<?php $ambil = $koneksi->query("SELECT * FROM kue ORDER BY idkue DESC"); ?>
 	<?php while($kue = $ambil->fetch_assoc()){ ?>
         <div class="box">
             <img src="../img/kue/<?php echo $kue['gambar']; ?>" alt="">
@@ -64,7 +70,7 @@ include("./view/header.php");
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star-half-alt"></i>
                 </div>
-            <a href="checkout.php" class="btn">shop now</a>
+            <a href="produk.php?idkate=<?php $kue['idkate']?>" class="btn">shop now</a>
         </div>
 
         
