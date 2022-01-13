@@ -53,7 +53,7 @@
                 </div>
                 
                 <div class="d-sm-flex mb-2 align-items-center">
-                  <span class="ml-auto"><a href="register.php" class="forgot-pass">i have acount</a></span> 
+                  <span class="ml-auto"><a href="login.php" class="forgot-pass">i have acount</a></span> 
                 </div>
 
                 <input type="submit" value="Register" name="Register" class="btn btn-block btn-primary">

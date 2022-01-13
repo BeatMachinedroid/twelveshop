@@ -42,16 +42,14 @@ include("./view/header.php");
 </section>
 
 <!-- header section ends -->
-
-<!-- products section starts  -->
 <section class="categories" id="categories">
 
     <h1 class="heading"> product <span>categories</span> </h1>
 
     <div class="box-container">
-	<?php $ambil = $koneksi->query("SELECT * FROM kategori ORDER BY idkate DESC"); ?>
+	<?php $ambil = $koneksi->query("SELECT * FROM kategori"); ?>
 	<?php while($kategori = $ambil->fetch_assoc()){ ?>
-        <a href="produkk.php?idkate=<?php $kue['idkate']?>">
+        <a href="produk.php">
         <div class="box">
             <img src="../image/<?php echo $kategori['gambark']; ?>" alt="">
             <h3><?php echo $kategori['namakate']; ?></h3>
@@ -63,6 +61,8 @@ include("./view/header.php");
     </div>
 
 </section>
+<!-- products section starts  -->
+
 <section class="produk" id="produk">
 
 

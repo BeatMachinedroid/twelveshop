@@ -12,7 +12,7 @@ error_reporting(0);  // using to hide undefine undex errors
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="img/admin/logo.png">
-    <title>Twelve Kitchen : Home</title>
+    <title>Twelve Kitchen | Home</title>
     
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
 

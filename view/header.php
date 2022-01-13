@@ -22,7 +22,7 @@
                             // if user login
                             echo   '<div class="icons">
                                     <div class="fas fa-bars" id="menu-btn"></div>
-                                    <div class="fas fa-search" id="search-btn"></div>
+                                    
                                     <div class="fas fa-shopping-cart" id="cart-btn"></div>
                                     <div class="fas fa-sign-out-alt" id="login-btn"></div>
                                 </div>';
@@ -30,7 +30,8 @@
                         }?>
 
     <form action="" class="search-form" method="post">
-        <input type="text" name="cari" id="search-box" placeholder="Cari Kue.... ">
+        <input type="text" name="cari" id="search-box" placeholder="Cari Kue.... " value="<?php echo $_GET['search'] ?>"> 
+        <input type="hidden" name="kat" value="<?php echo $_GET['id'] ?>">
         <label for="search-box" class="fas fa-search" name="carikue"></label>
     </form>
     <?php

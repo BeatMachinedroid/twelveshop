@@ -6,65 +6,8 @@
 
 session_start(); //temp session
 error_reporting(0); // hide undefine index
-include("connection/koneksi.php"); // connection
-if(isset($_POST['submit'] )) //if submit btn is pressed
-{
-     if(empty($_POST['username']) ||  //fetching and find if its empty
-   	    empty($_POST['nama'])||   
-		empty($_POST['telp'])||
-        empty($_POST['almt'])||
-		empty($_POST['pass'])||
-		empty($_POST['repass']))
-		{
-			$message = "All fields must be Required!";
-		}
-	else
-	{
-		//cheching username & email if already present
-	$check_username= mysqli_query($koneksi, "SELECT username FROM acoount where username = '".$_POST['username']."' ");
-		
+ // connection
 
-	
-	if($_POST['pass'] != $_POST['repass']){  //matching passwords
-       	$message = "Password not match";
-    }
-	elseif(strlen($_POST['pass']) < 6)  //cal password length
-	{
-		$message = "Password harus 6 atau lebih";
-	}
-	elseif(strlen($_POST['telp']) < 12)  //cal phone length
-	{
-		$message = "invalid phone number!";
-	}
-	elseif(mysqli_num_rows($check_username) > 0)  //check username
-     {
-    	$message = 'username Already exists!';
-     }
-	else{
-       
-	 //inserting values into db
-	$mql = "INSERT INTO acoount(username,nama,telp,alamat,password) VALUES('".$_POST['username']."','".$_POST['nama']."','".$_POST['telp']."','".$_POST['almt']."','".md5($_POST['pass'])."')";
-	mysqli_query($koneksi, $mql);
-		$success = "Account Created successfully! <p>You will be redirected in <span id='counter'>5</span> second(s).</p>
-														<script type='text/javascript'>
-														function countdown() {
-															var i = document.getElementById('counter');
-															if (parseInt(i.innerHTML)<=0) {
-																location.href = 'login.php';
-															}
-															i.innerHTML = parseInt(i.innerHTML)-1;
-														}
-														setInterval(function(){ countdown(); },1000);
-														</script>'";
-		
-		
-		
-		
-		 header("refresh:5;url=login.php"); // redireted once inserted success
-    }
-	}
-
-}
 
 
 ?>
@@ -98,8 +41,92 @@ if(isset($_POST['submit'] )) //if submit btn is pressed
 ?>
 
 <?php
-  include('./view/bodyregister.php');
+
+
+    // When form submitted, insert values into the database.
+
+    
 ?>
+
+<div class="d-md-flex half">
+    <div class="bg" ></div>
+      <div class="container">
+      <?php
+				if(isset($_SESSION['error'])) {
+				?>
+				<div class="alert alert-warning" role="alert">
+				  <?php echo $_SESSION['error']?>
+				</div>
+				<?php
+				}
+				?>
+
+				<?php
+				if(isset($_SESSION['message'])) {
+				?>
+				<div class="alert alert-success" role="alert">
+				  <?php echo $_SESSION['message']?>
+				</div>
+				<?php
+				}
+				?>
+          <div class="col-md-12">
+            <div class="form-block mx-auto">
+            
+                        <div class="alert alert-danger" role="alert"><?= $error; ?></div>
+                    
+              <div class="text-center mb-4">  
+                <h3>Register Twelve Kitchen</h3>
+              </div>
+              <!-- <p class="mb-4">Lorem ipsum dolor sit amet elit. Sapiente sit aut eos consectetur adipisicing.</p> -->
+                <!-- conten -->
+                <form action="kondisireg.php" method="post">
+                <div class="form-group first">
+                  <label for="username">Username</label>
+                  <input type="text" class="form-control" placeholder="your-email@gmail.com" id="username" name="username">
+                </div>
+                <div class="form-group first">
+                  <label for="name">Name</label>
+                  <input type="text" class="form-control" placeholder="Example-name" id="username" name="nama">
+                </div>
+                <div class="form-group first">
+                  <label for="telp">No. Telphon</label>
+                  <input type="text" class="form-control" placeholder="08" id="username" name="telp">
+                </div>
+                <div class="form-group first">
+                  <label for="almt">Address</label>
+                  <input type="text" class="form-control" placeholder="your-email@gmail.com" id="username" name="almt">
+                </div>
+                <div class="form-group last mb-3">
+                  <label >Password</label>
+                  <input type="password" class="form-control" placeholder="Your Password" id="password" name="pass">
+                  
+                  
+                        
+                </div>
+                <div class="form-group last mb-3">
+                  <label >Re - Password</label>
+                  <input type="password" class="form-control" placeholder="Your Password" id="password" name="repass">
+                  
+                            
+                        
+                </div>
+                
+                <div class="d-sm-flex mb-2 align-items-center">
+                  <span class="ml-auto"><a href="login.php" class="forgot-pass">i have acount</a></span> 
+                </div>
+
+                <input type="submit" value="Register" name="submit" class="btn btn-block btn-primary">
+
+              </form>
+                <!-- end conten -->
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+  </div>
     
     
 
@@ -107,6 +134,10 @@ if(isset($_POST['submit'] )) //if submit btn is pressed
     <script src="js/js/popper.min.js"></script>
     <script src="js/js/bootstrap.min.js"></script>
     <script src="js/js/main.js"></script>
+
+    <?php
+        session_destroy();
+    ?>
   </body>
 </html>
 
