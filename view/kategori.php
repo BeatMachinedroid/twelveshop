@@ -5,7 +5,7 @@
     <div class="box-container">
 	<?php $ambil = $koneksi->query("SELECT * FROM kategori LIMIT 4"); ?>
 	<?php while($kategori = $ambil->fetch_assoc()){ ?>
-        <a href="login.php">
+        <a href="produkk.php?id=<?php echo $kategori['idkate'] ?>">
         <div class="box">
             <img src="image/<?php echo $kategori['gambark']; ?>" alt="">
             <h3><?php echo $kategori['namakate']; ?></h3>

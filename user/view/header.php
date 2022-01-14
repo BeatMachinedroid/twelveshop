@@ -13,17 +13,7 @@
                             
         <div class="icons">
                                     <div class="fas fa-bars" id="menu-btn"></div>
-                                    <?php
-                                        if(empty($_SESSION["user_id"])) // if user is not login
-                                            {
-                                            echo   '<div class="fas fa-search" id="search-btn"></div>';}
-                                        else{
-                                            // if user login
-                                            echo   '
-                                                    <div class="fas fa-search" id="search-btn"></div>
-                                                    ';
-
-                                    }?>
+                                    
                                     <a href="checkout.php"><div class="fas fa-shopping-cart" id="cart-btn"></div></a>
                                     <a href="logout.php"><div class="fas fa-sign-out-alt" id="login-btn"></div></a>
                                 </div>

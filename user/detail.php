@@ -62,17 +62,12 @@ include("./view/header.php");
 
 <!-- products section starts  -->
 
-<?php 
 
-?>
 
 <!-- products section ends -->
 
 <!-- categories section starts  -->
 
-<?php 
-include("./view/kategori.php")
-?>
 <!-- categories section ends -->
 
 <!-- review section starts  -->
@@ -82,9 +77,6 @@ include("./view/kategori.php")
 
 <!-- blogs section starts  -->
 
-<?php 
-include("./view/blog.php")
-?>
 
 <!-- blogs section ends -->
 

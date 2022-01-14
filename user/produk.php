@@ -1,7 +1,5 @@
 <?php
-
-include("./../connection/koneksi.php");  //include connection file
-
+include("../connection/koneksi.php");  //include connection file
 error_reporting(0);  // using to hide undefine undex errors
 
 session_start();
@@ -21,18 +19,17 @@ session_start();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
     <!-- custom css file link  -->
-    <link rel="stylesheet" href="./../css/style.css">
-    <link rel="stylesheet" href="./../css/stylein.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/stylein.css">
 
 </head>
 <body>
     
 <!-- header section starts  -->
 
-<?php
-include("./view/header.php");
+<?php 
+include("../view/header.php")
 ?>
-
 <section class="home" id="home">
 
     <div class="content">
@@ -40,8 +37,8 @@ include("./view/header.php");
     </div>
 
 </section>
-
 <!-- header section ends -->
+<!-- kategori section -->
 
 <!-- products section starts  -->
 <section class="categories" id="categories">
@@ -49,13 +46,14 @@ include("./view/header.php");
     <h1 class="heading"> product <span>categories</span> </h1>
 
     <div class="box-container">
-	<?php $ambil = $koneksi->query("SELECT * FROM kategori ORDER BY idkate DESC"); ?>
+	<?php $ambil = $koneksi->query("SELECT * FROM kategori"); ?>
 	<?php while($kategori = $ambil->fetch_assoc()){ ?>
-        <a href="produkk.php?idkate=<?php $kue['idkate']?>">
+        <a href="produkk.php?id=<?php echo $kategori['idkate'] ?>">
         <div class="box">
             <img src="../image/<?php echo $kategori['gambark']; ?>" alt="">
             <h3><?php echo $kategori['namakate']; ?></h3>
-        </div></a>
+        </div>
+        </a>
 
         
         <?php } ?>
@@ -63,18 +61,18 @@ include("./view/header.php");
     </div>
 
 </section>
+
 <section class="produk" id="produk">
 
-
-
     <h3 class="heading"> our <span>products</span> </h3>
+
     <div class="box-container">
-	<?php $ambil = $koneksi->query("SELECT * FROM kue ORDER BY idkate DESC"); ?>
+	<?php $ambil = $koneksi->query("SELECT * FROM kue"); ?>
 	<?php while($kue = $ambil->fetch_assoc()){ ?>
         <div class="box">
             <img src="../img/kue/<?php echo $kue['gambar']; ?>" alt="">
             <h3><?php echo $kue['namakue']; ?></h3>
-            <div class="price">Rp. <?php echo $kue['harga']; ?></div>
+            <div class="price">Rp.<?php echo $kue['harga']; ?></div>
             <div class="stars">
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
@@ -82,7 +80,7 @@ include("./view/header.php");
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star-half-alt"></i>
                 </div>
-            <a href="detail.php?idkate=<?php $kue['idkate']?>" class="btn">shop now</a>
+            <a href="login.php" class="btn">shop now</a>
         </div>
 
         
@@ -92,17 +90,10 @@ include("./view/header.php");
 
 </section>
 
-
-
-
-
-<!-- products section ends -->
-
-
 <!-- footer section starts  -->
 
 <?php 
-include("./view/footer.php")
+include("../view/footer.php")
 ?>
 
 <!-- footer section ends -->
