@@ -84,7 +84,7 @@ else{
     
     <!-- Style -->
     <link rel="stylesheet" href="css/css/style.css">
-
+    <link rel="icon" href="img/admin/logo.png">
     <title>Twelve Kitchen | Register</title>
   </head>
   <body>

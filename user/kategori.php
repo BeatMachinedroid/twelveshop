@@ -3,19 +3,7 @@ include("./../connection/koneksi.php");  //include connection file
 error_reporting(0);  // using to hide undefine undex errors
 session_start();
  
-if( isset($_SESSION['akses']) )
-{
-    header('location:'.$_SESSION['akses']);
-    exit();
-}
- 
-$error = '';
-if( isset($_SESSION['error']) ) {
- 
-    $error = $_SESSION['error']; // set error
- 
-    unset($_SESSION['error']);
-} ?>
+ ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -66,7 +54,7 @@ include("./view/header.php")
     <div class="box-container">
 	<?php $ambil = $koneksi->query("SELECT * FROM kategori"); ?>
 	<?php while($kategori = $ambil->fetch_assoc()){ ?>
-        <a href="produk.php">
+        <a href="produkk.php?id=<?php echo $kategori['idkate'] ?>">
         <div class="box">
             <img src="../image/<?php echo $kategori['gambark']; ?>" alt="">
             <h3><?php echo $kategori['namakate']; ?></h3>

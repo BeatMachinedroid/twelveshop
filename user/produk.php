@@ -1,8 +1,6 @@
 <?php
 include("../connection/koneksi.php");  //include connection file
 error_reporting(0);  // using to hide undefine undex errors
-
-session_start();
 ?>
 
 <!DOCTYPE html>
@@ -28,7 +26,7 @@ session_start();
 <!-- header section starts  -->
 
 <?php 
-include("../view/header.php")
+include("./view/header.php")
 ?>
 <section class="home" id="home">
 
@@ -44,7 +42,7 @@ include("../view/header.php")
 <section class="categories" id="categories">
 
     <h1 class="heading"> product <span>categories</span> </h1>
-
+    
     <div class="box-container">
 	<?php $ambil = $koneksi->query("SELECT * FROM kategori"); ?>
 	<?php while($kategori = $ambil->fetch_assoc()){ ?>
@@ -80,7 +78,7 @@ include("../view/header.php")
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star-half-alt"></i>
                 </div>
-            <a href="login.php" class="btn">shop now</a>
+                <a href="checkout.php?id=<?php echo $kue['idkue']; ?>" class="btn">shop now</a>
         </div>
 
         

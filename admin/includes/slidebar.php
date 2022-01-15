@@ -74,11 +74,7 @@
                 </div>
             </li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="order.php">
-                    <i class="fas fa-shopping-cart"></i>
-                    <span>Orders</span></a>
-            </li>
+            
 <!-- Divider -->
 
 

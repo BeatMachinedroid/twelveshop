@@ -17,7 +17,7 @@ if(isset($_POST['submit']))           //if upload btn is pressed
 		  
 		
 		
-		if(empty($_POST['kue'])||empty($_POST['deskripsi'])||$_POST['harga']==''||$_POST['kategori']=='')
+		if(empty($_POST['nama']))
 		{	
 											$error = 	'<div class="alert alert-danger alert-dismissible fade show">
 																<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -37,7 +37,7 @@ if(isset($_POST['submit']))           //if upload btn is pressed
 								$extension = strtolower(end($extension));  
 								$fnew = uniqid().'.'.$extension;
    
-								$store = "../img/kue/".basename($fnew);                      // the path to store the upload image
+								$store = "../image/".basename($fnew);                      // the path to store the upload image
 	
 					if($extension == 'jpg'||$extension == 'png'||$extension == 'gif'||$extension == 'jpeg' )
 					{        
@@ -58,7 +58,7 @@ if(isset($_POST['submit']))           //if upload btn is pressed
 												
 												
 				                                 
-												$sql = "update kue set idkate='$_POST[kategori]',namakue='$_POST[kue]',deskripsi='$_POST[deskripsi]',harga='$_POST[harga]',gambar='$fnew' where idkue='$_GET[kue]'";  // store the submited data ino the database :images
+												$sql = "INSERT INTO kategori(namakate,gambark) VALUE('".$_POST['nama']."','".$fnew."')";  // store the submited data ino the database :images
 												mysqli_query($koneksi, $sql); 
 												move_uploaded_file($temp, $store);
 			  
@@ -70,7 +70,7 @@ if(isset($_POST['submit']))           //if upload btn is pressed
 	
 										}
 					}
-					elseif($extension == '')
+					        elseif($extension == '')
 					{
 						$error = 	'<div class="alert alert-danger alert-dismissible fade show">
 																<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -97,6 +97,7 @@ if(isset($_POST['submit']))           //if upload btn is pressed
 	
 
 }
+
 ?>             
                    
 
@@ -104,120 +105,70 @@ if(isset($_POST['submit']))           //if upload btn is pressed
     <div class="container-fluid">
 
         <!-- Page Heading -->
-        
+        <?php  echo $error;
+									        echo $success; ?>
 
        <!-- Content Row start-->
-       <div class="container-fluid">
-                <!-- Start Page Content -->
-                  
-									
-									<?php  echo $error;
-									        echo $success; ?>
-									
-									
-								
-								
-					    <div class="col-lg-12">
-                        <div class="card card-outline-primary">
+       <div class="row">
+
+       <div class="col-lg-12">
+
+       <div class="card card-outline-primary">
                             <div class="card-header">
-                                <h4 class="m-b-0 text">update kue</h4>
+                                <h4 class="m-b-0 text">Add kategori</h4>
                             </div>
                             <div class="card-body">
                                 <form action='' method='post'  enctype="multipart/form-data">
                                     <div class="form-body">
-                                    <?php $qml ="select * from kue where idkue='$_GET[kue_upd]'";
+                                    <?php $qml ="select * from kategori where idkate='$_GET[kate_upd]'";
 													$rest=mysqli_query($koneksi, $qml); 
 													$roww=mysqli_fetch_array($rest);
 														?>
+                                       
                                         <hr>
-                                        <div class="row p-t-20">
-                                            <div class="col-md-6">
+                                        
+                                            <div class="col-md-20">
                                                 <div class="form-group">
-                                                    <label class="control-label">Nama Kue</label>
-                                                    <input type="text" name="kue" value="<?php echo $roww['namakue'];?>" class="form-control" placeholder="Morzirella">
+                                                    <label class="control-label">kategori Name</label>
+                                                    <input type="text" name="nama" class="form-control" placeholder="pizza" value="<?php echo $roww['namakate'];?>">
                                                    </div>
                                             </div>
                                             <!--/span-->
-                                            <div class="col-md-6">
+                                            
+                                            <!--/span-->
+                                        
+                                        <!--/row-->
+										
+											<div class="col-md-20">
                                                 <div class="form-group has-danger">
-                                                    <label class="control-label">Deskripsi</label>
-                                                    <input type="text" name="deskripsi" value="<?php echo $roww['deskripsi'];?>" class="form-control form-control-danger" placeholder="Deskripsi">
+                                                    <label class="control-label">Image</label>
+                                                    <input type="file" name="file"  id="lastName" class="form-control form-control-danger" placeholder="12n">
                                                     </div>
                                             </div>
                                             <!--/span-->
-                                        </div>
-                                        <!--/row-->
-                                        <div class="row p-t-20">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label class="control-label">harga </label>
-                                                    <input type="text" name="harga" value="<?php echo $roww['harga'];?>" class="form-control" placeholder="Rp">
-                                                   </div>
-                                            </div>
-                                            <!--/span-->
-                                            <div class="col-md-6">
-                                                <div class="form-group has-danger">
-                                                    <label class="control-label">Image</label>
-                                                    <input type="file" name="file"  id="lastName" class="form-control form-control-danger" placeholder="Gambar Kue">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!--/row-->
-										
-                                            <!--/span-->
-                                        <div class="row">
-                                            
 											
 											
 											
-											
-											
-											
-											 <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <label class="control-label">Select Category</label>
-													<select name="kategori" class="form-control custom-select" data-placeholder="Choose a Category" tabindex="1">
-                                                        <option>--Select Category--</option>
-                                                 <?php $ssql ="select * from kategori";
-													$res=mysqli_query($koneksi, $ssql); 
-													while($row=mysqli_fetch_array($res))  
-													{
-                                                       echo' <option value="'.$row['idkate'].'">'.$row['namakate'].'</option>';;
-													}  
-                                                 
-													?> 
-													 </select>
-                                                </div>
-                                            </div>
-											
-											
-											
-                                        </div>
-                                     
+											 
                                         
-                                    </div>
+											
+											
+											
+                                        </div>
+                                        <!--/row-->
+                                        
+                                      
+                                            <!--/span-->
+                                        
                                     <div class="form-actions">
                                         <input type="submit" name="submit" class="btn btn-success" value="save"> 
                                         <a href="dashboard.php" class="btn btn-inverse">Cancel</a>
                                     </div>
                                 </form>
-                            </div>
-                        
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
+                            </div>            
+ 
                 </div>
-                <!-- End PAge Content -->
+                <!-- /.col-lg-12 -->
             </div>
 
        <!-- content row finish -->

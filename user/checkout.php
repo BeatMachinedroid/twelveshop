@@ -3,19 +3,7 @@ include('./../connection/koneksi.php');
 error_reporting(0);  // using to hide undefine undex errors
 session_start();
  
-if( isset($_SESSION['akses']) )
-{
-    header('location:'.$_SESSION['akses']);
-    exit();
-}
- 
-$error = '';
-if( isset($_SESSION['error']) ) {
- 
-    $error = $_SESSION['error']; // set error
- 
-    unset($_SESSION['error']);
-} ?>
+ ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -60,6 +48,7 @@ include("./view/header.php")
 </section>
 
 <!-- home section ends -->
+<form action="check.php" method="post">
 <div class="container">
         <div class="col-lg-6 col-lg-offset-3">
             
@@ -77,127 +66,55 @@ include("./view/header.php")
                         <input type="email" name="email" class="form-control" placeholder="Email" id="email">
                     </div>
                     <div class="form-group">
-                    <label>Pilih Kategori</label>
-                        <select name="kategori" class="form-control" id="kategori">
-                            <option value="">-- Pilih Kategori --</option>
-													
-                                    <option value="" id="kateop"></option>
-                                                        
-                                                        
-                                
-                          
-                                                    
-                            
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Jumlah kue</label>
-                        <input type="text" name="jumlah" class="form-control" placeholder="jumlah yang diinginkan" id="jumlah">
-                    </div>
-                    <div class="form-group">
-                        <label>Pilih Kue</label>
-                        <select name="kue" class="form-control" id="kue" aria-placeholder="-- Pilih Kue --">
-
-                                                        
-                                                        
-                                
-                          
-                                                    
-                            
-                        </select>
-                    </div>
-                    <div class="form-group">
                         <label>Your WhatsApp Number</label>
                         <input type="text" name="phone" class="form-control" placeholder="Nomor Kontak / WhatsApp" id="phone">
                     </div>
+                    <div class="form-group">
+                    <label>Pilih kue</label>
+                        <select name="kue" class="form-control" id="kategori">
+                    <?php
+	 			$_GET['id'] != '';
+                
+	 			
+	 				
+	 				
+               $ambil = $koneksi->query("SELECT * FROM kue WHERE idkue LIKE '%".$_GET['id']."%' ORDER BY idkue DESC"); 
+                while($kue = $ambil->fetch_assoc()){
+
+	 			?>
+                    
+                            <option><?php echo $kue['namakue']; ?></option>
+ 
+                        
+
+                        <?php } ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                    <div class="form-group">
+                        <label>Jumlah kue</label>
+                        <input type="text" name="jumlah" value="1" class="form-control" placeholder="jumlah yang diinginkan" id="jumlah">
+                    </div>
+                    
                     
                     <div class="form-group">
                         <label>Alamat yang Dituju</label>
                         <textarea name="alamat" class="form-control" rows="3" id="alamat"></textarea>
                     </div>
                     <div class="form-group">
-                        <button class="btn btn-success send">Pesan via WhatsApp</button>
+                        <button class="btn btn-success send" name="submit">Pesan via WhatsApp</button>
                     </div>
  
                     <div id="text-info"></div>
                 </div>
             </div>
+            </div>
+        </div></div>
         </div>
 </div>
+</form>
 
 
-
-
-<script type="text/javascript">
-$(document).ready(function(){
-		//setInterval memberikan delay pada saat data akan di tampilkan
-		setInterval(function(){
-                //Metode load digunakan untuk menampilkan data
-			$('#kue').load("code.php")
-		}, 1000);
-	});
-
-    $(document).ready(function(){
-		//setInterval memberikan delay pada saat data akan di tampilkan
-		setInterval(function(){
-                //Metode load digunakan untuk menampilkan data
-			$('#kategori').load("code.php")
-		}, 1000);
-	});
-
-		$(document).on('click','.send', function(){
-			/* Inputan Formulir */
-			var input_name 			= $("#name").val(),
-			    input_email 		= $("#email").val(),
-                input_kategori      = $("#kategori").val(),
-			    input_jumlah		= $("#jumlah").val(),
-			    input_kue		    = $("#kue").val(),
-                input_wa            = $("#phone").val(),
-			    input_alamat 	    = $("#alamat").val();
-
-			/* Pengaturan Whatsapp */
-			var walink 		= 'https://web.whatsapp.com/send',
-			    phone 		= '6289643122191',
-			    text 		= 'Halo saya ingin memesan :',
-			    text_yes	= 'Pesanan Anda berhasil terkirim.',
-			    text_no 	= 'Isilah formulir terlebih dahulu.';
-
-			/* Smartphone Support */
-			if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-				var walink = 'whatsapp://send';
-			}
-
-			if(input_name != "" && input_email != ""&& input_wa != "" && input_kue != "" && input_alamat != "" ){
-				/* Whatsapp URL */
-				var checkout_whatsapp = walink + '?phone=' + phone + '&text=' + text + '%0A%0A' +
-				    'Nama : ' + input_name + '%0A' +
-				    'Alamat Email : ' + input_email + '%0A' +
-                    'Katergori :' + input_kategori + '%0A'+
-                    'Jumlah kue :' + input_jumlah + '%0A'
-				    'Whatsapp : ' + input_wa + '%0A' +
-				    'Nama kue : ' + input_kue + '%0A' +
-				    'Alamat : ' + input_alamat + '%0A';
-
-				/* Whatsapp Window Open */
-				window.open(checkout_whatsapp,'_blank');
-				document.getElementById("text-info").innerHTML = '<div class="alert alert-success">'+text_yes+'</div>';
-			} else {
-				document.getElementById("text-info").innerHTML = '<div class="alert alert-danger">'+text_no+'</div>';
-			}
-		});
-	</script>
-</body>
-</html>
-
-
-<!-- checkout section -->
-
-
-
-<!-- checkout section ends-->
-
-
-<!-- footer section starts  -->
 
 <?php 
 include("./view/sript.php");

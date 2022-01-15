@@ -9,25 +9,14 @@
         
     </nav>
 
-    <?php
-						if(empty($_SESSION["user_id"])) // if user is not login
-							{
-                            echo   '<div class="icons">
+    
+						<div class="icons">
                                     <div class="fas fa-bars" id="menu-btn"></div>
                                     
                                     <a href="login.php"><div class="fas fa-shopping-cart" id="cart-btn"></div></a>
                                     <a href="login.php"><div class="fas fa-user" id="login-btn"></div></a>
-                                </div>';}
-                        else{
-                            // if user login
-                            echo   '<div class="icons">
-                                    <div class="fas fa-bars" id="menu-btn"></div>
-                                    
-                                    <div class="fas fa-shopping-cart" id="cart-btn"></div>
-                                    <div class="fas fa-sign-out-alt" id="login-btn"></div>
-                                </div>';
-
-                        }?>
+                                </div>
+                        
 
     <form action="" class="search-form" method="post">
         <input type="text" name="cari" id="search-box" placeholder="Cari Kue.... " value="<?php echo $_GET['search'] ?>"> 

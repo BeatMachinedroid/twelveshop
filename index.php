@@ -3,19 +3,7 @@ include("./connection/koneksi.php");  //include connection file
 error_reporting(0);  // using to hide undefine undex errors
 session_start();
  
-if( isset($_SESSION['akses']) )
-{
-    header('location:'.$_SESSION['akses']);
-    exit();
-}
- 
-$error = '';
-if( isset($_SESSION['error']) ) {
- 
-    $error = $_SESSION['error']; // set error
- 
-    unset($_SESSION['error']);
-} ?>
+ ?>
 
 <!DOCTYPE html>
 <html lang="en">
