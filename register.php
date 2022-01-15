@@ -45,8 +45,9 @@ elseif(mysqli_num_rows($check_nama) > 0) //check email
 }
 else{
        
+  $password = md5($_POST['pass']);
   //inserting values into db
- $mql = "INSERT INTO acoount(username,nama,telp,alamat,password) VALUES('".$_POST['username']."','".$_POST['nama']."','".$_POST['telp']."','".$_POST['almt']."','".md5($_POST['password'])."')";
+ $mql = "INSERT INTO acoount(username,nama,telp,alamat,password) VALUES('".$_POST['username']."','".$_POST['nama']."','".$_POST['telp']."','".$_POST['almt']."','$password')";
  mysqli_query($koneksi, $mql);
    $success = "Account Created successfully! <p>You will be redirected in <span id='counter'>5</span> second(s).</p>
                            <script type='text/javascript'>
