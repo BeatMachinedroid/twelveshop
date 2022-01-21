@@ -83,19 +83,8 @@ if(isset($_POST['submit']))           //if upload btn is pressed
 																<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 																<strong>invalid extension!</strong>png, jpg, Gif are accepted.
 															</div>';
-						
-	   
 						}               
-	   
-	   
 	   }
-
-
-
-	
-	
-	
-
 }
 ?>             
                    

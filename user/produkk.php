@@ -28,7 +28,7 @@ session_start();
 <!-- header section starts  -->
 
 <?php 
-include("../view/header.php")
+include("./view/header.php")
 ?>
 <section class="home" id="home">
 
@@ -63,7 +63,7 @@ include("../view/header.php")
             <div class="box">
             <img src="../img/kue/<?php echo $kue['gambar']; ?>" alt="">
             <h3><?php echo $kue['namakue']; ?></h3>
-            <div class="price">Rp.<?php echo $kue['harga']; ?></div>
+            <div class="price">Rp. <?php echo $kue['harga']; ?></div>
             
             <div class="stars">
                     <i class="fas fa-star"></i>

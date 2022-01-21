@@ -90,7 +90,7 @@ include("./view/header.php")
                         <?php } ?>
                         </select>
                     </div>
-                    <div class="form-group">
+                    
                     <div class="form-group">
                         <label>Jumlah kue</label>
                         <input type="text" name="jumlah" value="1" class="form-control" placeholder="jumlah yang diinginkan" id="jumlah">

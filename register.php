@@ -12,7 +12,7 @@ if(isset($_POST['submit'] )) //if submit btn is pressed
      if(empty($_POST['username']) ||  //fetching and find if its empty 
 		empty($_POST['nama']) ||  
 		empty($_POST['telp'])||
-		empty($_POST['almt'])||
+		empty($_POST['alamat'])||
 		empty($_POST['pass']) ||
 		empty($_POST['repass']))
 		{
@@ -41,13 +41,13 @@ elseif(mysqli_num_rows($check_username) > 0)  //check username
 }
 elseif(mysqli_num_rows($check_nama) > 0) //check email
 {
- $message = 'Email Already exists!';
+ $message = 'name Already exists!';
 }
 else{
        
   $password = md5($_POST['pass']);
   //inserting values into db
- $mql = "INSERT INTO acoount(username,nama,telp,alamat,password) VALUES('".$_POST['username']."','".$_POST['nama']."','".$_POST['telp']."','".$_POST['almt']."','$password')";
+ $mql = "INSERT INTO acoount(username,nama,telp,alamat,password) VALUES('".$_POST['username']."','".$_POST['nama']."','".$_POST['telp']."','".$_POST['alamat']."','$password')";
  mysqli_query($koneksi, $mql);
    $success = "Account Created successfully! <p>You will be redirected in <span id='counter'>5</span> second(s).</p>
                            <script type='text/javascript'>
@@ -119,15 +119,16 @@ else{
           <div class="col-md-12">
             <div class="form-block mx-auto">
 
-              <span style="color:red;"><?php echo $message; ?></span>
-              <span style="color:green;">
-                  <?php echo $success; ?>
-                      </span>
+              
                         
                     
               <div class="text-center mb-4">  
                 <h3>Register Twelve Kitchen</h3>
               </div>
+              <span style="color:red;"><?php echo $message; ?></span>
+              <span style="color:green;">
+                  <?php echo $success; ?>
+                      </span>
               <!-- <p class="mb-4">Lorem ipsum dolor sit amet elit. Sapiente sit aut eos consectetur adipisicing.</p> -->
                 <!-- conten -->
                 <form action="" method="post">
@@ -144,8 +145,8 @@ else{
                   <input type="text" class="form-control" placeholder="08" id="username" name="telp">
                 </div>
                 <div class="form-group first">
-                  <label for="almt">Address</label>
-                  <input type="text" class="form-control" placeholder="" id="username" name="almt">
+                        <label>Alamat Lengkap</label>
+                        <textarea name="alamat" class="form-control" rows="3" id="alamat"></textarea>
                 </div>
                 <div class="form-group last mb-3">
                   <label >Password</label>

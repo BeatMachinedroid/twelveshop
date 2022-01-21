@@ -40,6 +40,7 @@
                         <a class="collapse-item" href="user.php">All Users</a>
                         
                     </div>
+                    
                 </div>
             </li>
 

@@ -90,12 +90,6 @@ if(isset($_POST['submit']))           //if upload btn is pressed
 	   
 	   }
 
-
-
-	
-	
-	
-
 }
 ?>             
                    
@@ -182,7 +176,7 @@ if(isset($_POST['submit']))           //if upload btn is pressed
 													$res=mysqli_query($koneksi, $ssql); 
 													while($row=mysqli_fetch_array($res))  
 													{
-                                                       echo' <option value="'.$row['idkate'].'">'.$row['namakate'].'</option>';;
+                                                       echo' <option value="'.$row['idkate'].'">'.$row['namakate'].'</option>';
 													}  
                                                  
 													?> 
