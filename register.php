@@ -24,48 +24,48 @@ if(isset($_POST['submit'] )) //if submit btn is pressed
 	$check_username= mysqli_query($koneksi, "SELECT username FROM acoount where username = '".$_POST['username']."' ");
 	$check_nama = mysqli_query($koneksi, "SELECT nama FROM acoount where nama = '".$_POST['nama']."' ");
 
-  if($_POST['pass'] != $_POST['repass']){  //matching passwords
-    $message = "Password not match";
-}
-elseif(strlen($_POST['pass']) < 6)  //cal password length
-{
-$message = "Password Must be >=6";
-}
-elseif(strlen($_POST['telp']) < 10)  //cal phone length
-{
-$message = "invalid phone number!";
-}
-elseif(mysqli_num_rows($check_username) > 0)  //check username
-{
- $message = 'username Already exists!';
-}
-elseif(mysqli_num_rows($check_nama) > 0) //check email
-{
- $message = 'name Already exists!';
-}
-else{
-       
-  $password = md5($_POST['pass']);
-  //inserting values into db
- $mql = "INSERT INTO acoount(username,nama,telp,alamat,password) VALUES('".$_POST['username']."','".$_POST['nama']."','".$_POST['telp']."','".$_POST['alamat']."','$password')";
- mysqli_query($koneksi, $mql);
-   $success = "Account Created successfully! <p>You will be redirected in <span id='counter'>5</span> second(s).</p>
-                           <script type='text/javascript'>
-                           function countdown() {
-                             var i = document.getElementById('counter');
-                             if (parseInt(i.innerHTML)<=0) {
-                               location.href = 'login.php';
-                             }
-                             i.innerHTML = parseInt(i.innerHTML)-1;
-                           }
-                           setInterval(function(){ countdown(); },1000);
-                           </script>'";
-   
-   
-   
-   
-    header("refresh:5;url=login.php"); // redireted once inserted success
-   }
+        if($_POST['pass'] != $_POST['repass']){  //matching passwords
+          $message = "Password not match";
+      }
+      elseif(strlen($_POST['pass']) < 6)  //cal password length
+      {
+      $message = "Password Must be >=6";
+      }
+      elseif(strlen($_POST['telp']) < 10)  //cal phone length
+      {
+      $message = "invalid phone number!";
+      }
+      elseif(mysqli_num_rows($check_username) > 0)  //check username
+      {
+      $message = 'username Already exists!';
+      }
+      elseif(mysqli_num_rows($check_nama) > 0) //check email
+      {
+      $message = 'name Already exists!';
+      }
+      else{
+            
+        $password = md5($_POST['pass']);
+        //inserting values into db
+      $mql = "INSERT INTO acoount(username,nama,telp,alamat,password) VALUES('".$_POST['username']."','".$_POST['nama']."','".$_POST['telp']."','".$_POST['alamat']."','$password')";
+      mysqli_query($koneksi, $mql);
+        $success = "Account Created successfully! <p>You will be redirected in <span id='counter'>5</span> second(s).</p>
+                                <script type='text/javascript'>
+                                function countdown() {
+                                  var i = document.getElementById('counter');
+                                  if (parseInt(i.innerHTML)<=0) {
+                                    location.href = 'login.php';
+                                  }
+                                  i.innerHTML = parseInt(i.innerHTML)-1;
+                                }
+                                setInterval(function(){ countdown(); },1000);
+                                </script>'";
+        
+        
+        
+        
+          header("refresh:5;url=login.php"); // redireted once inserted success
+        }
  }
 
 }
@@ -133,7 +133,7 @@ else{
                 <!-- conten -->
                 <form action="" method="post">
                 <div class="form-group first">
-                  <label for="username">Username</label>
+                  <label for="username">Email</label>
                   <input type="text" class="form-control" placeholder="your-email@gmail.com" id="username" name="username">
                 </div>
                 <div class="form-group first">

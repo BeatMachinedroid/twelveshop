@@ -78,7 +78,7 @@ include("./view/header.php")
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star-half-alt"></i>
                 </div>
-                <a href="checkout.php?id=<?php echo $kue['idkue']; ?>" class="btn">shop now</a>
+                <a href="view/proses.php?id=<?php echo $kue['idkue']; ?>" class="btn">shop now</a>
         </div>
 
         

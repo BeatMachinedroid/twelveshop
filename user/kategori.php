@@ -1,7 +1,7 @@
 <?php
 include("./../connection/koneksi.php");  //include connection file
 error_reporting(0);  // using to hide undefine undex errors
-session_start();
+
  
  ?>
 

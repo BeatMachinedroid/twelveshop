@@ -1,6 +1,6 @@
 <?php
 
-
+session_start();
 error_reporting(0);
 include('../connection/koneksi.php');
 
@@ -9,22 +9,75 @@ include('./includes/slidebar.php');
 
 include('./includes/top.php');
 
-if (isset($_POST['submit'])) {
-    $username = $_POST['username'];
-    $nama = $_POST['nama'];
-    $telp = $_POST['telp'];
-    $alamat = $_POST['alamat'];
-    $password = $_POST['pass'];
-    $akses = $_POST['akses'];
+if(isset($_POST['submit'] ))
+{
+    if(empty($_POST['username']) ||
+		empty($_POST['nama']) ||  
+		empty($_POST['telp'])||
+		empty($_POST['alamat'])||
+		empty($_POST['password']))
+		{
+			$error = '<div class="alert alert-danger alert-dismissible fade show">
+																<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+																<strong>All fields Required!</strong>
+															</div>';
+		}
+	else
+	{
+		
+	$check_username= mysqli_query($koneksi, "SELECT username FROM acoount where username = '".$_POST['username']."' ");
+	$check_email = mysqli_query($koneksi, "SELECT nama FROM acoount where nama = '".$_POST['nama']."' ");
 
-
-    $query = "UPDATE acoount SET '$username' = username , '$nama' = nama , '$telp' = telp , '$alamat' = alamat , '$password' = password '$akses' = akses WHERE iduser = '$_GET[user_upd]'";
-
-    if (mysqli_query($koneksi, $query)) {
-        return header("Location:index.php");
-    } else {
-        echo 'Terjadi kesalahan saat memperbarui data user.';
+	
+	
+    if(!filter_var($_POST['nama'], FILTER_VALIDATE_EMAIL)) // Validate email address
+    {
+       	$error = '<div class="alert alert-danger alert-dismissible fade show">
+																<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+																<strong>invalid name!</strong>
+															</div>';
     }
+	elseif(strlen($_POST['password']) < 6)
+	{
+		$error = '<div class="alert alert-danger alert-dismissible fade show">
+																<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+																<strong>Password must be >=6!</strong>
+															</div>';
+	}
+	
+	elseif(strlen($_POST['telp']) < 10)
+	{
+		$error = '<div class="alert alert-danger alert-dismissible fade show">
+																<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+																<strong>invalid phone!</strong>
+															</div>';
+	}
+	elseif(mysqli_num_rows($check_username) > 0)
+     {
+    	$error = '<div class="alert alert-danger alert-dismissible fade show">
+																<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+																<strong>Username already exist!</strong>
+															</div>';
+     }
+	elseif(mysqli_num_rows($check_nama) > 0)
+     {
+    	$error = '<div class="alert alert-danger alert-dismissible fade show">
+																<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+																<strong>email already exist!</strong>
+															</div>';
+     }
+	else{
+       
+	
+	$mql = "INSERT INTO acoount(username,nama,telp,alamat,password) VALUES('".$_POST['username']."','".$_POST['nama']."','".$_POST['telp']."','".$_POST['alamat']."','".md5($_POST['password'])."')";
+	mysqli_query($koneksi, $mql);
+			$success = 	'<div class="alert alert-success alert-dismissible fade show">
+																<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+																<strong>Congrass!</strong> New User Added Successfully.</br></div>';
+	
+    }
+	}
+
 }
 ?>             
                    
@@ -55,23 +108,20 @@ if (isset($_POST['submit'])) {
                             <div class="card-body">
                                 <form action='' method='post'  enctype="multipart/form-data">
                                     <div class="form-body">
-                                    <?php $qml ="select * from acoount where iduser='$_GET[user_upd]'";
-													$rest=mysqli_query($koneksi, $qml); 
-													$roww=mysqli_fetch_array($rest);
-														?>
+                                       
                                         <hr>
                                         <div class="row p-t-20">
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="control-label">Username</label>
-                                                    <input type="text" name="username" value="<?php echo $roww['username'];?>" class="form-control" placeholder="username">
+                                                    <input type="text" name="username" class="form-control" placeholder="username">
                                                    </div>
                                             </div>
                                             <!--/span-->
                                             <div class="col-md-6">
                                                 <div class="form-group has-danger">
                                                     <label class="control-label">Nama</label>
-                                                    <input type="text" name="nama" value="<?php echo $roww['nama'];?>" class="form-control form-control-danger" placeholder="jon">
+                                                    <input type="text" name="nama" class="form-control form-control-danger" placeholder="jon">
                                                     </div>
                                             </div>
                                             <!--/span-->
@@ -81,14 +131,14 @@ if (isset($_POST['submit'])) {
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="control-label">No. Telphon</label>
-                                                    <input type="text" name="telp" value="<?php echo $roww['telp'];?>" class="form-control" placeholder="08">
+                                                    <input type="text" name="telp" class="form-control" placeholder="08">
                                                    </div>
                                             </div>
                                             <!--/span-->
                                             <div class="col-md-6">
-                                            <div class="form-group has-danger">
+                                                <div class="form-group has-danger">
                                                     <label class="control-label">Hak Akses</label>
-                                                    <input type="text" name="akses" value="<?php echo $roww['akses'];?>" class="form-control form-control-danger" placeholder="jon">
+                                                    <input type="text" name="akses" class="form-control form-control-danger" placeholder="Admin" disabled>
                                                     </div>
                                             </div>
                                             <!--/span-->
@@ -102,7 +152,7 @@ if (isset($_POST['submit'])) {
                                             <div class="col-md-12 ">
                                                 <div class="form-group">
                                                     
-                                                    <textarea name="address" type="text" style="height:100px;" class="form-control"><?php echo $roww['alamat'];?></textarea>
+                                                    <textarea name="address" type="text" style="height:100px;" class="form-control"></textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -111,14 +161,14 @@ if (isset($_POST['submit'])) {
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="control-label">Password</label>
-                                                    <input type="password" name="password" value="<?php echo md5($roww['password']);?>" class="form-control form-control-danger" placeholder="password">
+                                                    <input type="password" name="password" class="form-control form-control-danger" placeholder="password">
                                                     </div>
                                                 </div>
                                         
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="control-label">Confirm Password</label>
-                                                    <input type="password" name="repass" value="<?php echo md5($roww['password']);?>" class="form-control form-control-danger" placeholder="password">
+                                                    <input type="password" name="repass" class="form-control form-control-danger" placeholder="password">
                                                     </div>
                                                 </div>
                                           </div>

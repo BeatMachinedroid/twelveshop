@@ -31,7 +31,7 @@ if( !isset($_SESSION['username']) ){
             <div class="row no-gutters align-items-center">
                 <div class="col mr-2">
                     <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                        Kategori</div>
+                        <a href="allkate.php">Kategori</a></div>
                     <div class="h5 mb-0 font-weight-bold text-gray-800"><?php $sql="select * from Kategori";
 												$result=mysqli_query($koneksi,$sql); 
 													$rws=mysqli_num_rows($result);
@@ -53,7 +53,7 @@ if( !isset($_SESSION['username']) ){
             <div class="row no-gutters align-items-center">
                 <div class="col mr-2">
                     <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                        Kue</div>
+                        <a href="allkue.php">Kue</a></div>
                     <div class="h5 mb-0 font-weight-bold text-gray-800"><?php $sql="select * from kue";
 												$result=mysqli_query($koneksi,$sql); 
 													$rws=mysqli_num_rows($result);
@@ -75,7 +75,7 @@ if( !isset($_SESSION['username']) ){
             <div class="row no-gutters align-items-center">
                 <div class="col mr-2">
                     <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                        User</div>
+                        <a href="User.php">User</a></div>
                     <div class="h5 mb-0 font-weight-bold text-gray-800"><?php $sql="select * from acoount";
 												$result=mysqli_query($koneksi,$sql); 
 													$rws=mysqli_num_rows($result);
@@ -97,7 +97,7 @@ if( !isset($_SESSION['username']) ){
             <div class="row no-gutters align-items-center">
                 <div class="col mr-2">
                     <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                        Order</div>
+                        <a href="order.php">Order</a></div>
                     <div class="h5 mb-0 font-weight-bold text-gray-800"><?php $sql="select * from userorder";
 												$result=mysqli_query($koneksi,$sql); 
 													$rws=mysqli_num_rows($result);

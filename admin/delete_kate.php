@@ -1,7 +1,7 @@
 <?php
 include("../connection/koneksi.php");
 error_reporting(0);
-session_start();
+
 
 
 // sending query

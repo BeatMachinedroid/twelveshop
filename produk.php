@@ -72,7 +72,7 @@ include("./view/header.php")
         <div class="box">
             <img src="img/kue/<?php echo $kue['gambar']; ?>" alt="">
             <h3><?php echo $kue['namakue']; ?></h3>
-            <div class="price">Rp.<?php echo $kue['harga']; ?></div>
+            <div class="price">Rp. <?php echo $kue['harga']; ?></div>
             <div class="stars">
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>

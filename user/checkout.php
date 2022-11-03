@@ -1,7 +1,7 @@
 <?php  //include connection file
 include('./../connection/koneksi.php');
 error_reporting(0);  // using to hide undefine undex errors
-session_start();
+
  
  ?>
 
@@ -32,7 +32,9 @@ session_start();
 <!-- header section starts  -->
 
 <?php 
-include("./view/header.php")
+include("./view/header.php");
+
+
 ?>
 
 <!-- header section ends -->
@@ -46,8 +48,9 @@ include("./view/header.php")
     </div>
 
 </section>
-
+<?php $id = $_GET['id'];?>
 <!-- home section ends -->
+<section>
 <form action="check.php" method="post">
 <div class="container">
         <div class="col-lg-6 col-lg-offset-3">
@@ -70,33 +73,11 @@ include("./view/header.php")
                         <input type="text" name="phone" class="form-control" placeholder="Nomor Kontak / WhatsApp" id="phone">
                     </div>
                     <div class="form-group">
-                    <label>Pilih kue</label>
-                        <select name="kue" class="form-control" id="kategori">
-                    <?php
-	 			$_GET['id'] != '';
-                
-	 			
-	 				
-	 				
-               $ambil = $koneksi->query("SELECT * FROM kue WHERE idkue LIKE '%".$_GET['id']."%' ORDER BY idkue DESC"); 
-                while($kue = $ambil->fetch_assoc()){
-
-	 			?>
+                        <label>Pesan</label>
                     
-                            <option><?php echo $kue['namakue']; ?></option>
- 
+                        <textarea name="alamat" class="form-control" rows="3" id="alamat" disabled><?php echo $order['idorder']?></textarea>
                         
-
-                        <?php } ?>
-                        </select>
                     </div>
-                    
-                    <div class="form-group">
-                        <label>Jumlah kue</label>
-                        <input type="text" name="jumlah" value="1" class="form-control" placeholder="jumlah yang diinginkan" id="jumlah">
-                    </div>
-                    
-                    
                     <div class="form-group">
                         <label>Alamat yang Dituju</label>
                         <textarea name="alamat" class="form-control" rows="3" id="alamat"></textarea>
@@ -113,11 +94,11 @@ include("./view/header.php")
         </div>
 </div>
 </form>
-
+</section>
 
 
 <?php 
-include("./view/sript.php");
+
 include("./view/footer.php");
 ?>
 

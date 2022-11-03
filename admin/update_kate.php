@@ -5,7 +5,7 @@ include('./includes/slidebar.php');
 include('../connection/koneksi.php');
 include('./includes/top.php');
 
-session_start();
+
 error_reporting(0);
 
 if(isset($_POST['submit']))           //if upload btn is pressed

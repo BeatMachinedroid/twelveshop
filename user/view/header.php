@@ -14,24 +14,7 @@
         <div class="icons">
                                     <div class="fas fa-bars" id="menu-btn"></div>
                                     
-                                    <a href="checkout.php"><div class="fas fa-shopping-cart" id="cart-btn"></div></a>
+                                    <a href="cart.php"><div class="fas fa-shopping-cart" id="cart-btn"></div></a>
                                     <a href="logout.php"><div class="fas fa-sign-out-alt" id="login-btn"></div></a>
                                 </div>
-
-                       
-                                <form action="" class="search-form">
-        <input type="search" id="search-box" placeholder="search here...">
-        <label for="search-box" class="fas fa-search"></label>
-    </form>
-
-
-
-
-
-
-
-    
-						
-
-
 </header>

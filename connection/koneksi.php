@@ -1,6 +1,6 @@
 <?php
+session_start();
 /**
-* Nama File : Config.php
 * File Ini berisi beberapa data penting seperti
 * Data koneksi ke database
 * Secret Kode

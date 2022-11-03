@@ -28,7 +28,6 @@ error_reporting(0);  // using to hide undefine undex errors
     
 <!-- header section starts  -->
 <?php
-session_start();
  
 if( !isset($_SESSION['nama_user']) )
 {

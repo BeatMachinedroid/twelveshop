@@ -2,7 +2,6 @@
 include("../connection/koneksi.php");  //include connection file
 error_reporting(0);  // using to hide undefine undex errors
 
-session_start();
 ?>
 
 <!DOCTYPE html>
@@ -73,7 +72,7 @@ include("./view/header.php")
                     <i class="fas fa-star-half-alt"></i>
                 </div>
                 
-                <a href="checkout.php?id=<?php echo $kue['idkue']; ?>" class="btn">shop now</a>
+                <a href="view/proses.php?id=<?php echo $kue['idkue']; ?>" class="btn">shop now</a>
             
 					
 				

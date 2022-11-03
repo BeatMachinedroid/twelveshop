@@ -12,7 +12,7 @@
               </div>
               <form action="kondisi.php" method="post">
                 <div class="form-group first">
-                  <label for="username">Username</label>
+                  <label for="username">Email</label>
                   <input type="text" class="form-control" placeholder="your-email@gmail.com" id="username" name="nama">
                 </div>
                 <div class="form-group last mb-3">
